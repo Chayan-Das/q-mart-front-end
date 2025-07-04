@@ -25,13 +25,8 @@ export default function RootLayout({ children }) {
       >
         {/* Header outside the container */}
         <Header />
-
-        {/* Main content wrapper with top padding */}
-        <div className="w-full pt-[70px]">
-          <div className="max-w-7xl mx-auto px-4">{children}</div>
-        </div>
+        {children}
       </body>
     </html>
   );
 }
-

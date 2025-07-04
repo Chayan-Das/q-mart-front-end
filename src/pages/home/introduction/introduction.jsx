@@ -7,7 +7,7 @@ const Introduction = () => {
   return (
     <div
       style={{ height: "calc(100vh - 70px)" }}
-      className="w-full bg-white relative overflow-hidden"
+      className="w-full mt-[70px] bg-white relative overflow-hidden "
     >
       {/* Decorative Vectors */}
       <div className="absolute top-10 left-10 w-20 h-20 bg-green-100 rounded-full z-0 animate-pulse-slow opacity-40" />
