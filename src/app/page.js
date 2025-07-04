@@ -1,3 +1,4 @@
+import Footer from "@/components/shared/footer/footer";
 import Introduction from "@/pages/home/introduction/introduction";
 import ProductList from "@/pages/home/products/productList";
 import Search from "@/pages/home/search/search";
@@ -15,6 +16,12 @@ export default function Home() {
       <div id="products">
         <ProductList />
       </div>
+
+      <div id="contact">
+        <Footer />
+      </div>
+
+     
     </div>
   );
 }

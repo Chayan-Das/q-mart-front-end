@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/shared/header/header";
+import Footer from "@/components/shared/footer/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
         <div style={{ height: "calc(100vh - 70px)" }} className=" overflow-y-auto overflow-x-hidden">
           {children}
         </div>
+      
       </body>
     </html>
   );
