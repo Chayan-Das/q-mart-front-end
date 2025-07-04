@@ -14,7 +14,6 @@ import {
   Phone,
   Boxes,
 } from "lucide-react";
-import Link from "next/link";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -29,51 +28,73 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const onNavItemClick = (label) => {
+    // Map nav labels to corresponding section IDs
+    const sectionIds = {
+      home: "home",
+      products: "products",
+      contact: "contact",
+      search: "search", // optional if you want a search scroll
+    };
+
+    const sectionId = sectionIds[label.toLowerCase()];
+
+    if (sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      console.log("Clicked nav item:", label);
+    }
+
+    // Close mobile menu on click
+    setIsMobileMenuOpen(false);
+  };
+
   const handleSearchScroll = () => {
     const searchSection = document.getElementById("search");
     if (searchSection) {
       searchSection.scrollIntoView({ behavior: "smooth" });
     }
+    setIsMobileMenuOpen(false);
   };
 
   return (
-    <div
-      className={`bg-white h-[70px] fixed top-0 left-0 w-full z-50 transition-shadow ${
-        isScrolled ? "border-b border-gray-200 shadow-sm" : ""
-      }`}
-    >
+    <div className="bg-white h-[70px] w-full z-50 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
         {/* Logo */}
         <div>
-          <Link href="/">
-            <Image
-              src={logo}
-              alt="Logo"
-              width={1239}
-              height={1934}
-              priority
-              className="w-[37px] h-[53px] cursor-pointer"
-            />
-          </Link>
+          <Image
+            src={logo}
+            alt="Logo"
+            width={1239}
+            height={1934}
+            priority
+            className="w-[27px] h-[43px] cursor-pointer"
+          />
         </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6 lg:space-x-12 text-brand text-sm font-bold">
           {navItems.map((item, idx) => (
-            <Link key={idx} href={item.href}>
+            <button
+              key={idx}
+              onClick={() => onNavItemClick(item.label)}
+              className="cursor-pointer bg-transparent border-none p-0 hover:text-gray-500 transition"
+            >
               {item.label}
-            </Link>
+            </button>
           ))}
         </nav>
 
         {/* Icons */}
         <div className="flex items-center space-x-5 md:space-x-9 text-brand">
-          {/* Replace Link with button to trigger scroll */}
           <button
             onClick={handleSearchScroll}
             className="p-1 hover:bg-gray-100 rounded-full"
           >
-            <Search className="w-8 h-8 cursor-pointer" />
+            <Search className="w-5 h-5 cursor-pointer" />
           </button>
 
           <div className="relative cursor-pointer hover:bg-gray-100 rounded-full p-2 transition">
@@ -86,6 +107,7 @@ const Header = () => {
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden focus:outline-none"
+            aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? (
               <X className="w-6 h-6" />
@@ -98,26 +120,20 @@ const Header = () => {
 
       {/* Mobile Navigation Menu */}
       <div
-        className={`md:hidden fixed top-[70px] right-0 w-1/3 bg-white text-brand text-sm font-bold z-40 border-gray-200 border-1 shadow-md transform transition-transform duration-300 ${
+        className={`md:hidden fixed top-[70px] right-0 w-1/3 bg-white text-brand text-sm font-bold z-40 border-gray-200 border shadow-md transform transition-transform duration-300 ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {navItems.map((item, idx) => (
           <div
             key={idx}
-            className="flex items-center gap-3 border-b border-gray-300 px-4 py-4"
+            className="flex items-center gap-3 border-b border-gray-300 px-4 py-4 cursor-pointer"
+            onClick={() => onNavItemClick(item.label)}
           >
             {item.label === "Home" && <Home className="w-4 h-4" />}
-            {item.label === "Shop" && <Store className="w-4 h-4" />}
             {item.label === "Products" && <Boxes className="w-4 h-4" />}
             {item.label === "Contact" && <Phone className="w-4 h-4" />}
-            <Link
-              href={item.href}
-              className="block hover:text-gray-300 transition"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {item.label}
-            </Link>
+            <span>{item.label}</span>
           </div>
         ))}
       </div>

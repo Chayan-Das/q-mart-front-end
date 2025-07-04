@@ -6,7 +6,7 @@ import bg2 from "../../../../public/bg-2.png";
 const Introduction = () => {
   return (
     <div
-      style={{ height: "calc(100vh - 70px)" }}
+      style={{ height: "calc(100vh - 140px)" }}
       className="w-full mt-[70px] bg-white relative overflow-hidden "
     >
       {/* Decorative Vectors */}

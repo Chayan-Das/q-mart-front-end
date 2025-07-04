@@ -2,17 +2,16 @@
 import React from "react";
 import searchIcon from "../../../../public/search.png";
 import Image from "next/image";
-import { ArrowDown, ChevronDown, SearchIcon, SearchX } from "lucide-react";
+import { ChevronDown, SearchIcon } from "lucide-react";
 
 const Search = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your search logic here
   };
 
   return (
-    <div className="w-full bg-gray-100 py-12">
-      <div className="max-w-7xl mx-auto px-4">
+    <div className="w-full bg-gray-100 py-12 ">
+      <div className="max-w-7xl mx-auto px-4 ">
         <form
           onSubmit={handleSubmit}
           className="flex items-center justify-center max-w-3xl mx-auto w-full gap-3"
@@ -26,13 +25,13 @@ const Search = () => {
               height={36}
               className="w-9 h-9 object-contain"
             />
-            <ChevronDown className="hidden md:flex"/>
+            <ChevronDown className="hidden md:flex" />
           </div>
 
           {/* Search Input */}
           <div className="relative flex-grow">
             <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-              <SearchIcon/>
+              <SearchIcon />
             </div>
 
             <input

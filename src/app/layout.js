@@ -25,7 +25,9 @@ export default function RootLayout({ children }) {
       >
         {/* Header outside the container */}
         <Header />
-        {children}
+        <div style={{ height: "calc(100vh - 70px)" }} className=" overflow-y-auto overflow-x-hidden">
+          {children}
+        </div>
       </body>
     </html>
   );

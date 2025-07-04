@@ -1,6 +1,5 @@
 [
-  { "label": "Home", "href": "/" },
-  { "label": "Shop", "href": "#shop" },
-  { "label": "Products", "href": "#products" },
-  { "label": "Contact", "href": "#contact" }
+  { "label": "Home", "href": "home" },
+  { "label": "Products", "href": "products" },
+  { "label": "Contact", "href": "contact" }
 ]
