@@ -5,26 +5,22 @@ import pic from "../../../../public/logo.png";
 
 const ProductCard = ({ product }) => {
   const { current, original, discount } = product.price;
-  const isOutOfStock = product.inStock === false; // Assuming this prop exists
+  const isOutOfStock = product.inStock === false;
 
   return (
     <div className="w-[200px] bg-white border border-[#D8D9E0] rounded-md p-4 relative">
-      {/* Out of Stock Badge */}
       {isOutOfStock && (
-       <div className="absolute inset-0 bg-gray-100/80 z-10 flex items-center justify-center">
-  <div className="px-2 py-0.5 bg-red-600 text-white font-bold text-xs border border-red-200 rounded shadow">
-    Out of stock
-  </div>
-</div>
-
+        <div className="absolute inset-0 bg-gray-100/50 z-10 flex items-center justify-center">
+          <div className="px-2 py-0.5 bg-red-600 text-white font-bold text-xs border border-red-200 rounded shadow">
+            Out of stock
+          </div>
+        </div>
       )}
 
-      {/* Wishlist Button */}
       <button className="absolute top-1 right-1 bg-white rounded-full w-7 h-7 flex items-center justify-center shadow-sm z-10">
         <Heart className="text-red-600 w-5 h-5 p-[1px]" />
       </button>
 
-      {/* Image Section */}
       <div className="w-full h-[190px] bg-gray-100 rounded-sm overflow-hidden flex items-center justify-center relative">
         <img
           src={product.image}
@@ -34,7 +30,6 @@ const ProductCard = ({ product }) => {
         />
       </div>
 
-      {/* Product Info */}
       <div className="mt-4 space-y-1 px-2">
         <span className="block text-[#363842] text-sm font-bold truncate">
           {product.name}
@@ -69,7 +64,6 @@ const ProductCard = ({ product }) => {
         </div>
       </div>
 
-      {/* Add to Cart Button */}
       {!isOutOfStock && (
         <button className="absolute bottom-3 right-3 w-7 h-7 bg-[#2667FF] rounded-sm flex items-center justify-center">
           <ShoppingCart className="text-white w-4 h-4" />
